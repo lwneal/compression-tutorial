@@ -24,6 +24,8 @@ gromdar@gromdar2:~/gromdar$ seq 1000000 | wc
 1000000 1000000 6888896
 ```
 
+Almost 7 megabytes! That's too big.
+
 
 # Using gzip
 
@@ -34,15 +36,15 @@ gromdar@gromdar2:~/gromdar$ seq 1000000 | gzip - | wc
     297   27138 2129143
 ```
 
-If it's still too large, use `gzip` again.
-    
+An improvement, but still quite large. So, we use `gzip` again.
+
     
 ```
 gromdar@gromdar2:~/gromdar$ seq 1000000 | gzip - | gzip - | wc
     120     846   38364
 ```
 
-Repeat as desired until all data is 
+Repeat as desired until the data is sufficiently small.
 
 ```
 gromdar@gromdar2:~/gromdar$ seq 1000000 | gzip - | gzip - | gunzip | gunzip | tail
